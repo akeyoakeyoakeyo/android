@@ -163,6 +163,17 @@ fun Login() {
 
         }
 
+        Spacer(modifier = Modifier.height(30.dp))
+        Button(onClick = {
+            val intent = Intent(context,CustomListActivity::class.java)
+            context.startActivity(intent)
+        },
+            /* modifier = Modifier
+                 .fillMaxWidth()*/) {
+            Text(text = "Custom List",
+                fontSize = 20.sp)
+
+        }
 
     }
 

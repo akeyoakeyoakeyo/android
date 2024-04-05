@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -39,16 +42,16 @@ class CustomListActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 //                    Greeting("Android")
-                    CustomList(model = "")
+                    CustomList()
                 }
             }
         }
     }
 }
-data class FruitModel(val name:String, val image : Int)
+data class ShoeModel(val name:String, val image : Int)
 
 @Composable
-fun CustomList(model: FruitModel) {
+fun ListRow(model: ShoeModel) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -68,16 +71,16 @@ fun CustomList(model: FruitModel) {
             text = model.name,
             fontSize = 24.sp,
             fontWeight = FontWeight.SemiBold,
-            color = Color.White
+            color = Color.Black
         )
     }
 }
-private val fruitsList = mutableListOf<FruitModel>().apply {
-    add(FruitModel("Coffin nails",R.drawable.coffin))
-    add(FruitModel("Almond nails",R.drawable.almond))
-    add(FruitModel("Square nails",R.drawable.square))
-    add(FruitModel("Stiletto nails",R.drawable.stiletto))
-    add(FruitModel("Short stiletto nails",R.drawable.stilettoshort))
+private val shoeList = mutableListOf<ShoeModel>().apply {
+    add(ShoeModel("Air Jordan 1",R.drawable.j1))
+    add(ShoeModel("Air Jordan 2 Low Origins",R.drawable.j2))
+    add(ShoeModel("Air Jordan 3 Retro",R.drawable.j3))
+    add(ShoeModel("Air Jordan 4 Retro White Oreo",R.drawable.j4))
+
 
 
 }
@@ -85,17 +88,27 @@ private val fruitsList = mutableListOf<FruitModel>().apply {
 
 
 @Composable
-fun CustomListprev() {
+fun CustomList() {
     LazyColumn (
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 35.dp),
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ){
-        items(fruitsList){model ->
-            ListRow(model= ColorSpace.Model)
+        items(shoeList){ model ->
+            ListRow(model= model)
+
         }
 
+
     }
-    CustomList(model = "")
+
+
+}
+
+@Preview
+@Composable
+private fun CustomListprev() {
+    CustomList()
 
 }
